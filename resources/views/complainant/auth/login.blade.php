@@ -1,10 +1,19 @@
+{{-- เข้าสู่ระบบพนักงาน --}}
+@extends('layouts.bootstrap')
+
+
 <x-complainant-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+
     <form method="POST" action="{{ route('complainant.login') }}">
         @csrf
-        <h1>เข้าสู่ระบบ</h1>
+        
+        <div class="d-flex justify-content-center">
+            <p>เข้าสู่ระบบ</p>
+        </div>
+
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('อีเมล')" />
@@ -28,20 +37,22 @@
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                <span class="ml-2 text-sm text-gray-600">{{ __('จดจำรหัสผ่าน') }}</span>
             </label>
         </div>
 
+        {{-- เข้าสู่ระบบ --}}
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('complainant.password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                    {{ __('ลืมรหัสผ่าน') }}
                 </a>
             @endif
 
             <x-primary-button class="ml-3">
-                {{ __('Log in') }}
+                {{ __('เข้าสู่ระบบ') }}
             </x-primary-button>
         </div>
+
     </form>
 </x-complainant-guest-layout>

@@ -1,3 +1,19 @@
+@extends('layouts.bootstrap')
+
+<x-complainant-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ Auth::guard('complainant')->user()->name }}
+        </h2>
+    </x-slot>
+
+
+    
+</x-complainant-layout>
+
+
+
+
 <h1>ตารางร้องเรียน</h1>
 <a href="{{url('/complaint_form')}}">เพิ่มข้อมูล</a><br>
 <a href="{{url('/complainant/dashboard')}}">กลับ</a>

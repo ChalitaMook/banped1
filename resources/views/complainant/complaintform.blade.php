@@ -14,10 +14,10 @@
                     </div>
     @endif
 
-    <label for="select_input">ประเภทที่ร้องเรียน</label>
-    <select class="form-select" aria-label="select_input" id="select_input" name="select_input">
+    <label for="pb_id">ประเภทที่ร้องเรียน</label>
+    <select class="form-select" aria-label="pb_id" id="pb_id" name="pb_id">
             @foreach ($items as $item)
-                <option value="{{$item->id}},{{$item->ag_id}}">{{$item->name}}</option>
+                <option value="{{$item->id}}">{{$item->name}}</option>
             @endforeach
     </select>
 <br>
