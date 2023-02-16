@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/redirects',[HomeController::class,"index"]);
+Route::get('/redirects',[HomeController::class,"index"])->name('redirects');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

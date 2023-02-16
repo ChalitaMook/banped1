@@ -25,9 +25,9 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/redirects') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">หน้าหลัก</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">เข้าสู่ระบบ พนักงาน</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
@@ -49,16 +49,16 @@
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
 
-    
+
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                     @if (Route::has('complainant.login'))
                                     @auth('complainant')
                                         <a href="{{ url('/complainant/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">หน้าหลัก</a>
                                      @else
-                                         <a href="{{ route('complainant.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">ล็อคอิน ชาวบ้าน</a>
+                                         <a href="{{ route('complainant.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">เข้าสู่ระบบ สำหรับประชาชน</a>
                                         @if (Route::has('register'))
-                                            <a href="{{ route('complainant.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">สมัครสมาชิก ชาวบ้าน</a>
+                                            <a href="{{ route('complainant.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">สมัครสมาชิก สำหรับประชาชน</a>
                                         @endif
                                     @endauth
                                 @endif
