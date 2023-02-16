@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainantController;
 
@@ -72,12 +73,25 @@ Route::controller(ComplainantController::class)->group(function () {
     Route::get('/complaint_form', 'complaint_form');
     Route::get('/complaint_table', 'complaint_table');
     Route::post('/complaint_save','complaint_save');
+    Route::get('/complainant/operation/view/{id}','operationview');
+
 
     Route::get('/rate_table','rate_table');
-    Route::get('/rate_form','rate_form');
+    Route::get('/rate_form/{id}','rate_form');
+    Route::post('/rate_form_save','rate_form_save');
 
 
 });
+
+Route::controller(OfficerController::class)->group(function () {
+    Route::get('/officer/complaint_table', 'complaint_table');
+    Route::get('/change_status/{id}','change_status');
+    Route::get('/operation/{id}','operation');
+    Route::get('/operation/view/{id}','operationview');
+    Route::post('/operation_update/{id}','operation_update');
+
+});
+
 
 require __DIR__.'/auth.php';
 

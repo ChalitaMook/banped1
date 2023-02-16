@@ -1,11 +1,12 @@
 ประเมิน
-ดำเนินการเสร็จสิ้น
+<br>
+<a href="{{url('/complainant/dashboard')}}">กลับ</a>
+<br>
 <table >
     <thead>
         <tr>
         <th>หัวข้อ</th>
-        <th>สถานะ</th>
-        <th>รายละเอียด</th>
+        <th>รายละเอียดการดำเนินการ</th>
         <th>ประเมิน</th>
         </tr>
     </thead>
@@ -13,9 +14,12 @@
         @forelse ($item as $item )
         <tr>
             <td>{{$item->topic}}</td>
-            <td>สถานะ</td>
-            <td>รายละเอียด</td>
-            <td>ประเมิน</td>
+            <td> <a href="{{url('/complainant/operation/view/'.$item->id)}}" class="table-link text-info">
+                ดูรายละเอียด
+             </a></td>
+             <td> <a href="{{url('rate_form/'.$item->id)}}" class="table-link text-info">
+                ประเมิน
+             </a></td>
         </tr>
         @empty
             <tr>

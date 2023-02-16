@@ -99,7 +99,7 @@ class AdminController extends Controller
         $item = new User;
 
         $item->email = $req->email;
-        $item->password = Hash::make($req->pasword);
+        $item->password = Hash::make($req->password);
         $item->name = $req->name;
         $item->phone_num =$req->phone_num;
         $item->role = $req->role;
@@ -138,7 +138,7 @@ class AdminController extends Controller
         $item = User::find($id);
 
         $item->email = $req->email;
-        $item->password = Hash::make($req->pasword);
+        $item->password = Hash::make($req->password);
         $item->name = $req->name;
         $item->phone_num =$req->phone_num;
         $item->role = $req->role;

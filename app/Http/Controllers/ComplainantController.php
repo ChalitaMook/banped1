@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Complaint;
 use App\Models\Complainant;
 use App\Models\Problem_type;
-
+use App\Models\Operation;
+use App\Models\Rate;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +82,7 @@ class ComplainantController extends Controller
                 $pic1->move($upload_location,$pic1_name);
                 $full_path=$upload_location.$pic1_name;
                 $item->pic1 = $full_path;
-                
+
             }elseif($pic1 == null){
                     //
             }
@@ -114,7 +115,11 @@ class ComplainantController extends Controller
             $item->topic = $req->topic;
             $item->detail = $req->detail;
             $item->status = $req->status;
-            $item->pb_id = $req->pb_id;
+            $selected_value = explode(",", $req->input('select_input'));
+            $col1 = $selected_value[0];
+            $col2 = $selected_value[1];
+            $item->pb_id =$col1;
+            $item->ag_id =$col2;
             $item->cn_id = $req->cn_id;
             $item->save();
             return redirect('/complaint_table');
@@ -130,11 +135,37 @@ class ComplainantController extends Controller
         return view('complainant.complaintable',compact('item1','item2','item3'));
     }
 
-    public function rate_table(){
-        return view('complainant.ratetable');
+    public function operationview($id){
+        $item = Operation::where('cp_id',$id)->get();
+        return view('complainant.operationview',compact('item'));
     }
 
-    public function rate_form(){
-        return view('complainant.rateform');
+
+    public function rate_table(){
+        $id = Auth::guard('complainant')->user()->id;
+        $item = Complaint::where('cn_id',$id)->where('status','ดำเนินการเสร็จสิ้น')->get();
+        return view('complainant.ratetable',compact('item'));
+    }
+
+    public function rate_form($id){
+        $item=Complaint::find($id);
+        return view('complainant.rateform',compact('item'));
+    }
+
+    public function rate_form_save(Request $req){
+
+        $item = new Rate;
+        $item->section1 = intval($req->section1);
+        $item->section2 = intval($req->section2);
+        $item->section3 = intval($req->section3);
+        $item->section4 = intval($req->section4);
+        $item->section5 = intval($req->section5);
+        $item->comment = $req->comment;
+        $item->cn_id = $req->cn_id;
+        $item->cp_id = $req->cp_id;
+        $item->save();
+
+        return redirect('/rate_table');
+
     }
 }
