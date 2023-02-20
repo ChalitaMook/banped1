@@ -227,15 +227,33 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($item2 as $item2)
-            <tr>
-                <td>{{ $item2->topic }}</td>
-                <td>{{ $item2->detail }}</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>ประเภทร้องเรียน</td>
-                <td>สถานะ</td>
+        @forelse ($item2 as $item2 )
+        <tr>
+            <td>{{$item2->topic}}</td>
+            <td>{{$item2->detail}}</td>
+            @if($item2->pic1== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item2->pic1)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item2->pic2== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item2->pic2)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item2->pic3== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item2->pic3)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            <td>{{$item2->problem_type->name}}</td>
+            <td>{{$item2->status}}</td>
 
             </tr>
         @empty
@@ -263,17 +281,37 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($item3 as $item3)
-            <tr>
-                <td>{{ $item3->topic }}</td>
-                <td>{{ $item3->detail }}</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>ประเภทร้องเรียน</td>
-                <td>สถานะ</td>
-                <td>รายละเอียด</td>
-            </tr>
+        @forelse ($item3 as $item3 )
+        <tr>
+            <td>{{$item3->topic}}</td>
+            <td>{{$item3->detail}}</td>
+            @if($item3->pic1== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item3->pic1)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item3->pic2== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item3->pic2)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item3->pic3== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item3->pic3)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            <td>{{$item3->problem_type->name}}</td>
+            <td>{{$item3->status}}</td>
+            <td> <a href="{{url('/complainant/operation/view/'.$item3->id)}}" class="table-link text-info">
+                ดูรายละเอียด
+             </a></td>
+        </tr>
         @empty
             <tr>
                 <td>ไม่มีข้อมูล</td>

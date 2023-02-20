@@ -1,5 +1,7 @@
-ตาราง
-รายการร้องเรียน
+ตารางรายการร้องเรียน
+<br>
+<a href="{{url('/redirects')}}">กลับ</a>
+<br>
 รายการ
 <br>
 รับเรื่องแล้ว
@@ -42,8 +44,11 @@
                     <a href="{{asset($item1->pic3)}}">คลิกดูรูป</a>
                 </td>
             @endif
+            <td>{{$item1->complainant->name}}</td>
             <td>{{$item1->problem_type->name}}</td>
-            <td>{{$item1->status}}</td>
+            <td> <a href="{{url('change_status/'.$item1->id)}}" class="table-link text-info">
+                เปลี่ยนสถานะ
+             </a></td>
 
         </tr>
         @empty
@@ -74,12 +79,32 @@
         <tr>
             <td>{{$item2->topic}}</td>
             <td>{{$item2->detail}}</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>ประเภทร้องเรียน</td>
-            <td>สถานะ</td>
-
+            @if($item2->pic1== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item2->pic1)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item2->pic2== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item2->pic2)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item2->pic3== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item2->pic3)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            <td>{{$item2->complainant->name}}</td>
+            <td>{{$item2->problem_type->name}}</td>
+            <td> <a href="{{url('operation/'.$item2->id)}}" class="table-link text-info">
+                เพิ่มรายละเอียด
+             </a></td>
         </tr>
         @empty
             <tr>
@@ -111,13 +136,34 @@
         <tr>
             <td>{{$item3->topic}}</td>
             <td>{{$item3->detail}}</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>ประเภทร้องเรียน</td>
-            <td>สถานะ</td>
-            <td>รายละเอียด</td>
-        </tr>
+            @if($item3->pic1== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item3->pic1)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item2->pic2== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item3->pic2)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            @if($item3->pic3== null)
+                <td>--</td>
+            @else
+                <td>
+                    <a href="{{asset($item3->pic3)}}">คลิกดูรูป</a>
+                </td>
+            @endif
+            <td>{{$item3->complainant->name}}</td>
+            <td>{{$item3->problem_type->name}}</td>
+            <td> <a href="{{url('operation/view/'.$item3->id)}}" class="table-link text-info">
+                ดูรายละเอียด
+             </a></td>
+
+            </tr>
         @empty
             <tr>
             <td>ไม่มีข้อมูล</td>

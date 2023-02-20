@@ -27,15 +27,9 @@
             <label for="role">ตำแหน่ง</label>
             <select class="form-select" aria-label="role" id="role" name="role">
                 <option value="{{$item2->role}}"></option>
-                <option value="0"  {{ old('role') == 0 ? 'selected' : '' }}>
-                    แอดมิน
-                </option>
-                <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>
-                    พนักงาน
-                </option>
-                <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>
-                    หัวหน้า
-                </option>
+                <option value="0">แอดมิน</option>
+                <option value="1">พนักงาน</option>
+                <option value="2">หัวหน้า</option>
             </select>
             <br>
 
@@ -44,10 +38,9 @@
     <br>
     <label for="ag_id">หน่วยงานที่สังกัด:</label>
         <select class="form-select" aria-label="ag_id" id="ag_id" name="ag_id">
-            <option value="{{$item2->ag_id}}"></option>
-                @foreach ($item1 as $item1)
-                    <option value="{{$item1->id}}">{{$item1->name}}</option>
-                @endforeach
+            @foreach ($item1 as $item1)
+                <option value="{{ $item1->id }}" {{ $item1->id == $item2->ag_id ? 'selected' : '' }}>{{ $item1->name }}</option>
+            @endforeach
         </select>
     <br>
 

@@ -1,4 +1,4 @@
-{{-- เข้าสู่ระบบพนักงาน --}}
+{{-- เข้าสู่ระบบชาวบ้าน --}}
 @extends('layouts.bootstrap')
 
 
@@ -11,7 +11,7 @@
         @csrf
         
         <div class="d-flex justify-content-center">
-            <p>เข้าสู่ระบบ</p>
+            <p>เข้าสู่ระบบ (ผู้ใช้งาน)</p>
         </div>
 
         <!-- Email Address -->

@@ -19,14 +19,11 @@
     <br>
     <label for="ag_id">หน่วยงานที่ดูแล</label>
         <select class="form-select" aria-label="ag_id" id="ag_id" name="ag_id">
-            <option value="{{$item2->ag_id}}" ></option>
-                @foreach ($item1 as $item1)
-                    <option value="{{$item1->id}}">{{$item1->name}}</option>
-                @endforeach
+            @foreach ($item1 as $item1)
+                <option value="{{ $item1->id }}" {{ $item1->id == $item2->ag_id ? 'selected' : '' }}>{{ $item1->name }}</option>
+            @endforeach
         </select>
     <br>
-
-
     <br>
     <input type="submit" value="บันทึก">
 

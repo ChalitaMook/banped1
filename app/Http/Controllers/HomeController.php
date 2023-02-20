@@ -13,7 +13,7 @@ class HomeController extends Controller
             return view('admin.admin');
         }
         if($role =='1'){
-            return view('officer');
+            return view('officer.officer');
         }
         else{
             return view('boss');

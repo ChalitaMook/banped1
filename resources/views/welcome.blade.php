@@ -168,18 +168,33 @@
 
     <div class="container">
 
-        <div class="contaiber d-flex justify-content-center mt-3">
+        <div class="container d-flex justify-content-center mt-3">
             <img src="https://www.banped.go.th/uploaded/banner/14/4dabbed400110084229b5cb8b548840f.png" alt="">
         </div>
 
         <div class="row mt-2">
             <div class="col-md-11 mt-60 mx-md-auto">
-                <div class="login-box bg-white pl-lg-5 pl-0">
+                <div class="login-box bg-light pl-lg-5 pl-0">
                     <div class="row no-gutters align-items-center">
                         <div class="col-md-6">
                             <div class="form-wrap bg-white">
-                                <h4 class="btm-sep pb-3 mb-5 text-center"> <b>เข้าสู่ระบบผู้ใช้งาน</b> </h4>
-                                <form class="form" method="post" action="#">
+                                <h4 class="btm-sep pb-3  text-center"> <b>เข้าสู่ระบบผู้ใช้งาน</b> </h4>
+
+                                <div class="container d-flex justify-content-center">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/unicons-line-vol-4/24/house-user-256.png"
+                                        width="180" alt="">
+                                </div>
+
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a class="btn btn-primary rounded-pill" href="http://127.0.0.1:9000/complainant/login" role="button"><b>เข้าสู่ระบบ (ผู้ใช้งานทั่วไป)</b> </a>
+                                </div>
+
+                                <div class=" d-flex justify-content-center mt-1">
+                                    <a class="btn btn-dark rounded-pill" href="http://127.0.0.1:9000/complainant/register" role="button"><b>สมัครผู้ใช้งาน</b> </a>
+                                </div>
+                                
+
+                                {{-- <form class="form" method="post" action="#">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group position-relative">
@@ -218,19 +233,19 @@
 
 
                                     </div>
-                                </form>
+                                </form> --}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="content text-center">
                                 <div class=" pb-5 mb-5 mt-5">
                                     <h5 class="c-black"> <b>เข้าสู่ระบบเจ้าหน้าที่</b> </h5>
-                                    <div class="d-flex justify-content-center">
-                                        <img src="https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_34-256.png" width="120" alt="">
+                                    <div class="d-flex justify-content-center mt-2">
+                                        <img src="https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_34-256.png"
+                                            width="120" alt="">
                                     </div>
-                                    <div class="socials mt-3">
-                                        <button type="button" class="btn btn-success">เข้าสู่ระบบ (เจ้าหน้าที่)
-                                        </button>
+                                    <div class=" d-flex justify-content-center mt-3">
+                                       <a class="btn btn-success rounded-pill" href="http://127.0.0.1:9000/login" role="button"><b>เข้าสู่ระบบ (เจ้าหน้าที่)</b> </a>
                                     </div>
                                 </div>
                             </div>
@@ -241,7 +256,7 @@
         </div>
     </div>
 
-    <footer class=" text-center text-lg-start mt-5">
+    <footer class=" text-center text-lg-start mt-3">
         <!-- Copyright -->
         <div class="text-center text-light p-3">
             <b>
@@ -260,7 +275,7 @@
 
 
 
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -712,4 +727,4 @@
     </div>
 </body>
 
-</html>
+</html> --}}
