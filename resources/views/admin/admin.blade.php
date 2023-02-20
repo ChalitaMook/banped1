@@ -270,7 +270,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('ผู้บริหาร:ดูรายงาน') }}
+            Welcome {{Auth::user()->name}}
         </h2>
     </x-slot>
 
@@ -278,25 +278,15 @@
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
     <div class="container card  px-4 mt-4">
-        <!-- Account page navigation-->
-        <nav class="nav nav-borders">
-            <a class="nav-link ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
-                target="__blank">ข้อมูลประเภทข้อร้องเรียน</a>
-            <a class="nav-link active" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page"
-                target="__blank">กำลังดำเนินการ</a>
-            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
-                target="__blank">ดำเนินการเสร็จสิ้น</a>
-            <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"
-                target="__blank">ประเมินผล</a>
-        </nav>
+        
         <hr class="mt-0 mb-4">
         <div class="row">
             <div class="col-lg-4 mb-4">
                 <!-- Billing card 1-->
                 <div class="card h-100 border-start-lg border-start-primary">
                     <div class="card-body">
-                        <div class="small text-muted">ข้อมูลประเภทข้อร้องเรียน</div>
-                        <div class="h3">8 ข้อร้องเรียน</div>
+                        <a class="nav-link ms-0 h3" href="{{ url('/problem_type') }}"
+                        target="__blank">ข้อมูลประเภทข้อร้องเรียน</a>
                     </div>
                 </div>
             </div>
@@ -304,9 +294,8 @@
                 <!-- Billing card 2-->
                 <div class="card h-100 border-start-lg border-start-secondary">
                     <div class="card-body">
-                        <div class="small text-muted">ข้อร้องเรียน:กำลังดำเนินการ</div>
-                        <div class="h3">3 ข้อร้องเรียน</div>
-                        
+                        <a class="nav-link ms-0 h3" href="{{ url('/user') }}"
+                        target="__blank">ข้อมูลพนักงาน</a>
                     </div>
                 </div>
             </div>
@@ -314,24 +303,24 @@
                 <!-- Billing card 3-->
                 <div class="card h-100 border-start-lg border-start-success">
                     <div class="card-body">
-                        <div class="small text-muted">ดำเนินการเสร็จสิ้น</div>
-                        <div class="h3 d-flex align-items-center">5 ข้อร้องเรียน</div>
-                        
+                        <a class="nav-link ms-0 h3" href="{{ url('/agency') }}"
+                        target="__blank">ข้อมูลหน่วยงาน</a>
+
                     </div>
                 </div>
             </div>
         </div>
         <!-- Payment methods card-->
-        <div class="card card-header-actions mb-4">
+        {{-- <div class="card card-header-actions mb-4">
             <div class="card-header">
-                ตัวกรอกรายการ 
+                ตัวกรอกรายการ
                 <button class="btn btn-sm btn-primary" type="button">รายงาน วัน/เดือน/ปี</button>
             </div>
             <div class="card-body px-0">
                 <!-- Payment method 1-->
                 <div class="d-flex align-items-center justify-content-between px-4">
                     <div class="d-flex align-items-center">
-                        
+
                         <div class="ms-4">
                             <div class="small">สรุปเดือน มกราคม</div>
                             <div class="text-xs text-muted">1/1/2023</div>
@@ -359,9 +348,9 @@
                 <hr>
                 <!-- Payment method 3-->
             </div>
-        </div>
+        </div> --}}
         <!-- Billing history card-->
-        <div class="card mb-4">
+       {{--  <div class="card mb-4">
             <div class="card-header">รายงานผล</div>
             <div class="card-body p-0">
                 <!-- Billing history table-->
@@ -404,7 +393,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 
@@ -415,7 +404,7 @@
 
 {{-- <div class="container card border mt-5">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
         <div class="container mt-5">
             <div class="row">
                 <div class="col-xl-3 col-md-6">
@@ -466,7 +455,7 @@
 
             </div>
             <!-- end row -->
-    
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -499,14 +488,14 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member" data-toggle="tooltip"
                                                         data-placement="top" title=""
                                                         data-original-title="Reggie James">
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member" data-toggle="tooltip"
                                                         data-placement="top" title=""
                                                         data-original-title="Gerald Mayberry">
@@ -517,14 +506,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">100%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-success" role="progressbar"
                                                         style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -536,7 +525,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-    
+
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>ไฟฟ้าดับมาดูด่วน</td>
@@ -553,7 +542,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Scott Jessie">
@@ -564,14 +553,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">78%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-primary" role="progressbar"
                                                         style="width: 78%;" aria-valuenow="78" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -583,7 +572,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-    
+
                                         <tr>
                                             <th scope="row">3</th>
                                             <td>Multipurpose Landing Template</td>
@@ -600,7 +589,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Stanley Barber">
@@ -613,7 +602,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Jack Krier">
@@ -624,14 +613,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">100%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-success" role="progressbar"
                                                         style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -659,14 +648,14 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Reggie James">
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar8.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Gerald Mayberry">
@@ -677,14 +666,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">100%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-success" role="progressbar"
                                                         style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -696,7 +685,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-    
+
                                         <tr>
                                             <th scope="row">5</th>
                                             <td>Brand logo design</td>
@@ -713,7 +702,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Scott Jessie">
@@ -724,14 +713,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">54%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-primary" role="progressbar"
                                                         style="width: 54%;" aria-valuenow="54" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -743,7 +732,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-    
+
                                         <tr>
                                             <th scope="row">6</th>
                                             <td>Redesign - Landing page</td>
@@ -760,7 +749,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Stanley Barber">
@@ -773,7 +762,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar4.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Jack Krier">
@@ -784,14 +773,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">41%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-primary" role="progressbar"
                                                         style="width: 41%;" aria-valuenow="41" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -819,7 +808,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Reggie James">
@@ -836,7 +825,7 @@
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -848,7 +837,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-    
+
                                         <tr>
                                             <th scope="row">8</th>
                                             <td>Landing page Design</td>
@@ -865,7 +854,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Scott Jessie">
@@ -876,14 +865,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">84%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-primary" role="progressbar"
                                                         style="width: 84%;" aria-valuenow="84" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -895,7 +884,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-    
+
                                         <tr>
                                             <th scope="row">9</th>
                                             <td>Multipurpose Landing Template</td>
@@ -912,7 +901,7 @@
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar4.png"
                                                             class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-    
+
                                                     <a href="javascript: void(0);" class="team-member"
                                                         data-toggle="tooltip" data-placement="top" title=""
                                                         data-original-title="Stanley Barber">
@@ -929,14 +918,14 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0">Progress<span class="float-right">100%</span></p>
-    
+
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-success" role="progressbar"
                                                         style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </td>
-    
+
                                             <td>
                                                 <div class="action">
                                                     <a href="#" class="text-success mr-4" data-toggle="tooltip"
@@ -952,7 +941,7 @@
                                 </table>
                             </div>
                             <!-- end project-list -->
-    
+
                             <div class="pt-3">
                                 <ul class="pagination justify-content-end mb-0">
                                     <li class="page-item disabled">
