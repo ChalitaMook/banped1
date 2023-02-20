@@ -16,7 +16,7 @@ class HomeController extends Controller
             return view('officer.officer');
         }
         else{
-            return view('boss');
+            return view('boss.boss');
         }
     }
 
