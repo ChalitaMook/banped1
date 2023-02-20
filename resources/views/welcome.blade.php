@@ -186,12 +186,12 @@
                                 </div>
 
                                 <div class="container d-flex justify-content-center">
-                                    <a class="btn btn-primary rounded-pill" href="http://127.0.0.1:9000/complainant/login"
+                                    <a class="btn btn-primary rounded-pill" href="{{ route('complainant.login') }}"
                                         role="button"><b>เข้าสู่ระบบ(ผู้ใช้งาน)</b> </a>
                                 </div>
 
                                 <div class="container d-flex justify-content-center mt-2">
-                                    <a class="btn btn-dark rounded-pill" href="http://127.0.0.1:9000/complainant/register" role="button">
+                                    <a class="btn btn-dark rounded-pill" href="{{ route('complainant.register') }}" role="button">
                                         <b>สมัครสมาชิก</b> </a>
                                 </div>
 
@@ -207,7 +207,7 @@
                                             width="120" alt="">
                                     </div>
                                     <div class="container d-flex justify-content-center mt-3">
-                                        <a class="btn btn-success rounded-pill" href="http://127.0.0.1:9000/login" role="button">
+                                        <a class="btn btn-success rounded-pill" href="{{ route('login') }}" role="button">
                                             <b>เข้าสู่ระบบ(เจ้าหน้าที่)</b> </a>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
 
 
 
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -690,4 +690,4 @@
     </div>
 </body>
 
-</html>
+</html> --}}
