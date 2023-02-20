@@ -20,6 +20,9 @@ class AdminController extends Controller
         $items = Agency::get();
         return view('admin.problem_type_form',compact('items'));
     }
+
+
+
     public function pb_type_form_save(Request $req){
 
         $req->validate([

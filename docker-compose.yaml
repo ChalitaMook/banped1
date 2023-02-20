@@ -1,0 +1,18 @@
+version: "3.9"
+networks:
+  website:
+    name: website
+    driver: bridge
+services:
+  banped1:
+    container_name: banped1
+    build: .
+    tty: true
+    ports:
+      - 9000:80
+    volumes:
+      - ./:/app
+    networks:
+      - website
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
