@@ -1,699 +1,1093 @@
 @extends('layouts.bootstrap')
 
+
+{{-- css เมนูรายการ  --}}
 <style>
     body {
-        background: #f3f3f3;
-        margin-top: 20px;
-        color: #616f80;
+        background: #eee;
     }
 
-    .card {
-        border: none;
-        margin-bottom: 24px;
-        -webkit-box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
-        box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+    .card-box {
+        position: relative;
+        color: #fff;
+        padding: 20px 10px 40px;
+        margin: 20px 0px;
     }
 
-    .avatar-xs {
-        height: 2.3rem;
-        width: 2.3rem;
+    .card-box:hover {
+        text-decoration: none;
+        color: #f1f1f1;
+    }
+
+    .card-box:hover .icon i {
+        font-size: 100px;
+        transition: 1s;
+        -webkit-transition: 1s;
+    }
+
+    .card-box .inner {
+        padding: 5px 10px 0 10px;
+    }
+
+    .card-box h3 {
+        font-size: 27px;
+        font-weight: bold;
+        margin: 0 0 8px 0;
+        white-space: nowrap;
+        padding: 0;
+        text-align: left;
+    }
+
+    .card-box p {
+        font-size: 15px;
+    }
+
+    .card-box .icon {
+        position: absolute;
+        top: auto;
+        bottom: 5px;
+        right: 5px;
+        z-index: 0;
+        font-size: 72px;
+        color: rgba(0, 0, 0, 0.15);
+    }
+
+    .card-box .card-box-footer {
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        text-align: center;
+        padding: 3px 0;
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .card-box:hover .card-box-footer {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .bg-blue {
+        background-color: #00c0ef !important;
+    }
+
+    .bg-green {
+        background-color: #00a65a !important;
+    }
+
+    .bg-orange {
+        background-color: #f39c12 !important;
+    }
+
+    .bg-red {
+        background-color: #d9534f !important;
     }
 </style>
 
+{{-- ccs ตาราง --}}
+<style>
+    body {
+        background: #dcdcdc;
+        margin-top: 20px;
+    }
+
+    .widget-26 {
+        color: #3c4142;
+        font-weight: 400;
+    }
+
+    .widget-26 tr:first-child td {
+        border: 0;
+    }
+
+    .widget-26 .widget-26-job-emp-img img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .widget-26 .widget-26-job-title {
+        min-width: 200px;
+    }
+
+    .widget-26 .widget-26-job-title a {
+        font-weight: 400;
+        font-size: 0.875rem;
+        color: #3c4142;
+        line-height: 1.5;
+    }
+
+    .widget-26 .widget-26-job-title a:hover {
+        color: #68CBD7;
+        text-decoration: none;
+    }
+
+    .widget-26 .widget-26-job-title .employer-name {
+        margin: 0;
+        line-height: 1.5;
+        font-weight: 400;
+        color: #3c4142;
+        font-size: 0.8125rem;
+        color: #3c4142;
+    }
+
+    .widget-26 .widget-26-job-title .employer-name:hover {
+        color: #68CBD7;
+        text-decoration: none;
+    }
+
+    .widget-26 .widget-26-job-title .time {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .widget-26 .widget-26-job-info {
+        min-width: 100px;
+        font-weight: 400;
+    }
+
+    .widget-26 .widget-26-job-info p {
+        line-height: 1.5;
+        color: #3c4142;
+        font-size: 0.8125rem;
+    }
+
+    .widget-26 .widget-26-job-info .location {
+        color: #3c4142;
+    }
+
+    .widget-26 .widget-26-job-salary {
+        min-width: 70px;
+        font-weight: 400;
+        color: #3c4142;
+        font-size: 0.8125rem;
+    }
+
+    .widget-26 .widget-26-job-category {
+        padding: .5rem;
+        display: inline-flex;
+        white-space: nowrap;
+        border-radius: 15px;
+    }
+
+    .widget-26 .widget-26-job-category .indicator {
+        width: 13px;
+        height: 13px;
+        margin-right: .5rem;
+        float: left;
+        border-radius: 50%;
+    }
+
+    .widget-26 .widget-26-job-category span {
+        font-size: 0.8125rem;
+        color: #3c4142;
+        font-weight: 600;
+    }
+
+    .widget-26 .widget-26-job-starred svg {
+        width: 20px;
+        height: 20px;
+        color: #fd8b2c;
+    }
+
+    .widget-26 .widget-26-job-starred svg.starred {
+        fill: #fd8b2c;
+    }
+
+    .bg-soft-base {
+        background-color: #e1f5f7;
+    }
+
+    .bg-soft-warning {
+        background-color: #fff4e1;
+    }
+
+    .bg-soft-success {
+        background-color: #d1f6f2;
+    }
+
+    .bg-soft-danger {
+        background-color: #fedce0;
+    }
+
+    .bg-soft-info {
+        background-color: #d7efff;
+    }
+
+
+    .search-form {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+
+    .search-form input {
+        height: 100%;
+        background: transparent;
+        border: 0;
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        height: 100%;
+        font-size: 1rem;
+    }
+
+    .search-form select {
+        background: transparent;
+        border: 0;
+        padding: 1rem;
+        height: 100%;
+        font-size: 1rem;
+    }
+
+    .search-form select:focus {
+        border: 0;
+    }
+
+    .search-form button {
+        height: 100%;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .search-form button svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .search-body {
+        margin-bottom: 1.5rem;
+    }
+
+    .search-body .search-filters .filter-list {
+        margin-bottom: 1.3rem;
+    }
+
+    .search-body .search-filters .filter-list .title {
+        color: #3c4142;
+        margin-bottom: 1rem;
+    }
+
+    .search-body .search-filters .filter-list .filter-text {
+        color: #727686;
+    }
+
+    .search-body .search-result .result-header {
+        margin-bottom: 2rem;
+    }
+
+    .search-body .search-result .result-header .records {
+        color: #3c4142;
+    }
+
+    .search-body .search-result .result-header .result-actions {
+        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .search-body .search-result .result-header .result-actions .result-sorting {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-body .search-result .result-header .result-actions .result-sorting span {
+        flex-shrink: 0;
+        font-size: 0.8125rem;
+    }
+
+    .search-body .search-result .result-header .result-actions .result-sorting select {
+        color: #68CBD7;
+    }
+
+    .search-body .search-result .result-header .result-actions .result-sorting select option {
+        color: #3c4142;
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .search-body .search-filters {
+            display: flex;
+        }
+
+        .search-body .search-filters .filter-list {
+            margin-right: 1rem;
+        }
+    }
+
+    .card-margin {
+        margin-bottom: 1.875rem;
+    }
+
+    @media (min-width: 992px) {
+        .col-lg-2 {
+            flex: 0 0 16.66667%;
+            max-width: 16.66667%;
+        }
+    }
+
+    .card-margin {
+        margin-bottom: 1.875rem;
+    }
+
+    .card {
+        border: 0;
+        box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #ffffff;
+        background-clip: border-box;
+        border: 1px solid #e6e4e9;
+        border-radius: 8px;
+    }
+</style>
+
+
+
 <x-complainant-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ Auth::guard('complainant')->user()->name }}
-        </h2>
-    </x-slot>
+    <div class="container card mt-3">
+        <div class="d-flex justify-content-center mt-4 mb-4 ">
+            <img src="{{ asset('/image/logo1.png') }}" width="500" alt="">
+        </div>
+    </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                {{-- <div class="p-6 text-gray-900">
-                    <br>
-                    <a href="{{ url('/profile1') }}">โปรไฟล์</a>
-                    <br>
-                    <a href="{{ url('/complaint_form') }}">ร้องเรียนปัญหา</a>
-                    <br>
-                    <a href="{{ url('/complaint_table') }}">ดูรายการร้องเรียน</a>
-                    <br>
-                    <a href="{{ url('/rate_table') }}">ประเมิน</a>
-                </div> --}}
+    <div class="container card mt-2">
 
-
-                <div class="container mt-3">
-                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
-                        rel="stylesheet">
-
-                    <div class="container d-flex justify-content-center mt-3">
-                        <img src="https://www.banped.go.th/uploaded/banner/14/4dabbed400110084229b5cb8b548840f.png" alt="" width="500">
-                    </div>
-                    
-
-
-                    <div class="container mt-3">
-                        <div class="container card ">
-                            <div class="row mt-3">
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-pattern">
-                                        <div class="card-body">
-                                            <div class="float-right">
-                                                <i class="fa fa-user text-primary h4 ml-3"></i>
-                                            </div>
-                                            <a href="{{ url('/profile1') }}">โปรไฟล์</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-pattern">
-                                        <div class="card-body">
-                                            <div class="float-right">
-                                                <i class="fa fa-file text-primary h4 ml-3"></i>
-                                            </div>
-                                            <a href="{{ url('/complaint_form') }}">ร้องเรียนปัญหา</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-
-
-                                    
-                                    <div class="card bg-pattern">
-                                        <div class="card-body">
-                                            <div class="float-right">
-                                                <i class="fa fa-file text-primary h4 ml-3"></i>
-                                            </div>
-                                            <a href="{{ url('/complaint_table') }}">ดูรายการร้องเรียน</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-pattern">
-                                        <div class="card-body">
-                                            <div class="float-right">
-                                                <i class="fa fa-file text-primary h4 ml-3"></i>
-                                            </div>
-                                            <a href="{{ url('/rate_table') }}">ประเมิน</a>
-                                        </div>
-                                    </div>
-                                </div>
-    
-                            </div>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box rounded bg-blue">
+                        <div class="inner">
+                            <h3 class="text-center"> ร้องเรียนปัญหา </h3>
                         </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="table-responsive project-list">
-                                            <table class="table project-table table-centered table-nowrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Projects</th>
-                                                        <th scope="col">Start Date</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Team</th>
-                                                        <th scope="col">Progress</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>New admin Design</td>
-                                                        <td>02/5/2019</td>
-                                                        <td>
-                                                            <span class="text-success font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Completed</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Roger Drake">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Reggie James">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Gerald Mayberry">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar8.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">100%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-success" role="progressbar"
-                                                                    style="width: 100%;" aria-valuenow="100"
-                                                                    aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Landing page Design</td>
-                                                        <td>04/6/2019</td>
-                                                        <td>
-                                                            <span class="text-primary font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Deborah Mixon">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Scott Jessie">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">78%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-primary"
-                                                                    role="progressbar" style="width: 78%;"
-                                                                    aria-valuenow="78" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Multipurpose Landing Template</td>
-                                                        <td>06/6/2019</td>
-                                                        <td>
-                                                            <span class="text-success font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Completed</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Neil Wing">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Stanley Barber">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Roger Drake">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Jack Krier">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">100%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-success"
-                                                                    role="progressbar" style="width: 100%;"
-                                                                    aria-valuenow="100" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>Blog Template Design</td>
-                                                        <td>07/5/2019</td>
-                                                        <td>
-                                                            <span class="text-success font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Completed</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Roger Drake">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Reggie James">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar8.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Gerald Mayberry">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">100%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-success"
-                                                                    role="progressbar" style="width: 100%;"
-                                                                    aria-valuenow="100" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Brand logo design</td>
-                                                        <td>08/6/2019</td>
-                                                        <td>
-                                                            <span class="text-primary font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Deborah Mixon">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Scott Jessie">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">54%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-primary"
-                                                                    role="progressbar" style="width: 54%;"
-                                                                    aria-valuenow="54" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Redesign - Landing page</td>
-                                                        <td>10/6/2019</td>
-                                                        <td>
-                                                            <span class="text-primary font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Neil Wing">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Stanley Barber">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Roger Drake">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Jack Krier">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">41%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-primary"
-                                                                    role="progressbar" style="width: 41%;"
-                                                                    aria-valuenow="41" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">7</th>
-                                                        <td>Redesign - Dashboard</td>
-                                                        <td>12/5/2019</td>
-                                                        <td>
-                                                            <span class="text-success font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Completed</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Roger Drake">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Reggie James">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">100%</span></p>
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-success"
-                                                                    role="progressbar" style="width: 100%;"
-                                                                    aria-valuenow="100" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">8</th>
-                                                        <td>Landing page Design</td>
-                                                        <td>13/6/2019</td>
-                                                        <td>
-                                                            <span class="text-primary font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Deborah Mixon">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Scott Jessie">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">84%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-primary"
-                                                                    role="progressbar" style="width: 84%;"
-                                                                    aria-valuenow="84" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">9</th>
-                                                        <td>Multipurpose Landing Template</td>
-                                                        <td>15/6/2019</td>
-                                                        <td>
-                                                            <span class="text-success font-12"><i
-                                                                    class="mdi mdi-checkbox-blank-circle mr-1"></i>
-                                                                Completed</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="team">
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Neil Wing">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title=""
-                                                                    data-original-title="Stanley Barber">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                                <a href="javascript: void(0);" class="team-member"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Roger Drake">
-                                                                    <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                                                        class="rounded-circle avatar-xs"
-                                                                        alt="" />
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="mb-0">Progress<span
-                                                                    class="float-right">100%</span></p>
-
-                                                            <div class="progress mt-2" style="height: 5px;">
-                                                                <div class="progress-bar bg-success"
-                                                                    role="progressbar" style="width: 100%;"
-                                                                    aria-valuenow="100" aria-valuemin="0"
-                                                                    aria-valuemax="100"></div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="action">
-                                                                <a href="#" class="text-success mr-4"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Edit"> <i
-                                                                        class="fa fa-pencil h5 m-0"></i></a>
-                                                                <a href="#" class="text-danger"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="" data-original-title="Close"> <i
-                                                                        class="fa fa fa-remove h5 m-0"></i></a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- end project-list -->
-
-                                        <div class="pt-3">
-                                            <ul class="pagination justify-content-end mb-0">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1"
-                                                        aria-disabled="true">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item active"><a class="page-link"
-                                                        href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         </div>
-                        <!-- end row -->
+                        <a href="{{ url('/complaint_form') }}" class="card-box-footer">ร้องเรียน <i
+                                class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box rounded bg-green">
+                        <div class="inner">
+                            <h3 class="text-center"> ดูรายการร้องเรียน </h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                        </div>
+                        <a href="#" class="card-box-footer">ดูรายการร้องเรียน<i
+                                class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box rounded bg-orange">
+                        <div class="inner">
+                            <h3 class="text-center"> ประเมิน </h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        </div>
+                        <a href="{{ url('/rate_table') }}" class="card-box-footer">ประเมิน <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card-box rounded bg-red">
+                        <div class="inner">
+                            <h3 class="text-center"> ติดต่อเรา </h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <a href="#" class="card-box-footer">ติดต่อ <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
+
+            {{-- <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <a href="#">ตารางข้อมูลข้อร้องเรียน</a>
+                </div>
+            </div> --}}
+
+
+            {{-- ส่วนเเสดงข้อมูล table --}}
+            <div class="container card mt-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 card-margin">
+                            <div class="card search-form">
+                                <div class="card-body p-0">
+                                    <form id="search-form">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row no-gutters">
+                                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                                        <select class="form-control" id="exampleFormControlSelect1">
+                                                            @foreach ($item1 as $item1)
+                                                                <option value="{{ $item1->id }}">{{ $item1->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                                                        <input type="text" placeholder="Search..."
+                                                            class="form-control" id="search" name="search">
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                                        <button type="submit" class="btn btn-base">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-search">
+                                                                <circle cx="11" cy="11" r="8">
+                                                                </circle>
+                                                                <line x1="21" y1="21" x2="16.65"
+                                                                    y2="16.65"></line>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-margin">
+                                <div class="card-body">
+                                    <div class="row search-body">
+                                        <div class="col-lg-12">
+                                            <div class="search-result">
+                                                <div class="result-header">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="records">ข้อมูลร้องเรียน: <b>1-20</b> of
+                                                                <b>200</b>
+                                                                ทั้งหมด</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="result-actions">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                
+                                                <div class="result-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table widget-26">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Senior Software Engineer
+                                                                                / Developer</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">Axiom
+                                                                                    Corp.</a> <span
+                                                                                    class="text-muted time">1 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Full-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">London, UK</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 50/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-base">
+                                                                            <i class="indicator bg-base"></i>
+                                                                            <span>Software Development</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Marketing &amp;
+                                                                                Communication Supervisor</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">AxiomUI
+                                                                                    Llc.</a> <span
+                                                                                    class="text-muted time">2 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">New York,
+                                                                                    US</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 60/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-warning">
+                                                                            <i class="indicator bg-warning"></i>
+                                                                            <span>Marketing</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Senior Data Analyst /
+                                                                                Scientist</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">AxiomUI
+                                                                                    Inc.</a> <span
+                                                                                    class="text-muted time">4 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">New York,
+                                                                                    US</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 60/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-success">
+                                                                            <i class="indicator bg-success"></i>
+                                                                            <span>Artificial Intelligence</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">UX Designer &amp; UI
+                                                                                Developer</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">AxiomUI
+                                                                                    Inc.</a> <span
+                                                                                    class="text-muted time">5 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">Toronto,
+                                                                                    CAN</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 35/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-danger">
+                                                                            <i class="indicator bg-danger"></i>
+                                                                            <span>Design</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Information Security
+                                                                                Analyst / Expert</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">Axiom
+                                                                                    Corp.</a> <span
+                                                                                    class="text-muted time">6 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">Mumbai, IN</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 70/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-info">
+                                                                            <i class="indicator bg-info"></i>
+                                                                            <span>Infra Supervision</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star starred">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Senior Software Engineer
+                                                                                / Developer</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">Axiom
+                                                                                    Corp.</a> <span
+                                                                                    class="text-muted time">1 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Full-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">London, UK</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 50/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-base">
+                                                                            <i class="indicator bg-base"></i>
+                                                                            <span>Software Development</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Marketing &amp;
+                                                                                Communication Supervisor</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">AxiomUI
+                                                                                    Llc.</a> <span
+                                                                                    class="text-muted time">2 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">New York,
+                                                                                    US</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 60/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-warning">
+                                                                            <i class="indicator bg-warning"></i>
+                                                                            <span>Marketing</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Senior Data Analyst /
+                                                                                Scientist</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">AxiomUI
+                                                                                    Inc.</a> <span
+                                                                                    class="text-muted time">4 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">New York,
+                                                                                    US</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 60/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-success">
+                                                                            <i class="indicator bg-success"></i>
+                                                                            <span>Artificial Intelligence</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">UX Designer &amp; UI
+                                                                                Developer</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">AxiomUI
+                                                                                    Inc.</a> <span
+                                                                                    class="text-muted time">5 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">Toronto,
+                                                                                    CAN</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 35/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-danger">
+                                                                            <i class="indicator bg-danger"></i>
+                                                                            <span>Design</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="widget-26-job-emp-img">
+                                                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                                                                                alt="Company" />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-title">
+                                                                            <a href="#">Information Security
+                                                                                Analyst / Expert</a>
+                                                                            <p class="m-0"><a href="#"
+                                                                                    class="employer-name">Axiom
+                                                                                    Corp.</a> <span
+                                                                                    class="text-muted time">6 days
+                                                                                    ago</span></p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-info">
+                                                                            <p class="type m-0">Part-Time</p>
+                                                                            <p class="text-muted m-0">in <span
+                                                                                    class="location">Mumbai, IN</span>
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-salary">$ 70/hr</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            class="widget-26-job-category bg-soft-info">
+                                                                            <i class="indicator bg-info"></i>
+                                                                            <span>Infra Supervision</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="widget-26-job-starred">
+                                                                            <a href="#">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="feather feather-star starred">
+                                                                                    <polygon
+                                                                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                                                                    </polygon>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <nav class="d-flex justify-content-center">
+                                        <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
+                                            <li class="page-item">
+                                                <a class="page-link no-border" href="#">
+                                                    <span aria-hidden="true">«</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link no-border"
+                                                    href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link no-border" href="#">2</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link no-border" href="#">3</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link no-border" href="#">4</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link no-border" href="#">
+                                                    <span aria-hidden="true">»</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
+
+
     </div>
 
 

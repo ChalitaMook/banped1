@@ -6,6 +6,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainantController;
+use App\Models\Complaint;
+use App\Models\Problem_type;
+
+
 
 
 /*
@@ -31,7 +35,9 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/complainant/dashboard', function () {
-    return view('complainant.dashboard');
+    $item1 = Problem_type::get();
+    $item2 = Complaint::get();
+    return view('complainant.dashboard',compact('item1','item2'));
 })->middleware(['auth:complainant'])->name('complainant.dashboard');
 
 Route::middleware('auth')->group(function () {
