@@ -178,47 +178,24 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col-md-6">
                             <div class="form-wrap bg-white">
-                                <h4 class="btm-sep pb-3 mb-5 text-center"> <b>เข้าสู่ระบบผู้ใช้งาน</b> </h4>
-                                <form class="form" method="post" action="#">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group position-relative">
-                                                <span class="zmdi zmdi-account"></span>
-                                                <input type="email" id="email" class="form-control"
-                                                    placeholder="อีเมล">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group position-relative">
-                                                <span class="zmdi zmdi-email"></span>
-                                                <input type="password" id="password" class="form-control"
-                                                    placeholder="รหัสผ่าน">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 text-lg-right">
-                                            <a href="#" class="c-black">ลืมรหัสผ่าน</a>
-                                        </div>
-                                        <div class="col-12 mt-30">
-                                            <button type="submit" id="submit"
-                                                class="btn btn-lg btn-custom btn-dark btn-block">เข้าสู่ระบบ
-                                            </button>
-                                        </div>
+                                <h4 class="btm-sep pb-3  text-center"> <b>เข้าสู่ระบบผู้ใช้งาน</b> </h4>
 
-                                        <div class="col-12 mt-30">
-                                            <button type="submit" id="submit"
-                                                class="btn btn-lg btn-custom btn-primary mt-2 btn-block">สมัครผู้ใช้งาน
-                                            </button>
-                                        </div>
+                                <div class="container d-flex justify-content-center">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/unicons-line-vol-4/24/house-user-256.png"
+                                        alt="" width="120">
+                                </div>
 
-                                        <div class="container d-flex justify-content-center mt-3">
-                                            <a href=""></a>
-                                        </div>
+                                <div class="container d-flex justify-content-center">
+                                    <a class="btn btn-primary rounded-pill" href="http://127.0.0.1:9000/complainant/login"
+                                        role="button"><b>เข้าสู่ระบบ(ผู้ใช้งาน)</b> </a>
+                                </div>
+
+                                <div class="container d-flex justify-content-center mt-2">
+                                    <a class="btn btn-dark rounded-pill" href="http://127.0.0.1:9000/complainant/register" role="button">
+                                        <b>สมัครสมาชิก</b> </a>
+                                </div>
 
 
-
-
-                                    </div>
-                                </form>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -229,9 +206,9 @@
                                         <img src="https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_34-256.png"
                                             width="120" alt="">
                                     </div>
-                                    <div class="socials mt-3">
-                                        <button type="button" class="btn btn-success">เข้าสู่ระบบ (เจ้าหน้าที่)
-                                        </button>
+                                    <div class="container d-flex justify-content-center mt-3">
+                                        <a class="btn btn-success rounded-pill" href="http://127.0.0.1:9000/login" role="button">
+                                            <b>เข้าสู่ระบบ(เจ้าหน้าที่)</b> </a>
                                     </div>
                                 </div>
                             </div>
