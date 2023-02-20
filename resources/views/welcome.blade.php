@@ -19,23 +19,13 @@
             margin: 40px 0;
         }
     }
-</style>
 
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
-        
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/redirects') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">หน้าหลัก</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">เข้าสู่ระบบ พนักงาน</a>
+    .login-box .form-wrap {
+        padding: 30px 25px;
+        border-radius: 10px;
+        -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    }
 
     @media (min-width: 768px) {
         .login-box .form-wrap {
@@ -56,19 +46,193 @@
         box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
     }
 
+    .login-section {
+        position: relative;
+        z-index: 0;
+    }
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    @if (Route::has('complainant.login'))
-                                    @auth('complainant')
-                                        <a href="{{ url('/complainant/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">หน้าหลัก</a>
-                                     @else
-                                         <a href="{{ route('complainant.login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">เข้าสู่ระบบ สำหรับประชาชน</a>
-                                        @if (Route::has('register'))
-                                            <a href="{{ route('complainant.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">สมัครสมาชิก สำหรับประชาชน</a>
-                                        @endif
-                                    @endauth
-                                @endif
+    .login-section::after {
+        position: absolute;
+        content: '';
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.15;
+        z-index: -1;
+        background-image: url(../img/shapes/login-wave2.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top right;
+        -webkit-animation-duration: 3s;
+        animation-duration: 3s;
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: pulse;
+        animation-name: pulse;
+    }
+
+    .login-section::before {
+        position: absolute;
+        content: '';
+        opacity: 0.10;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image: url(../img/shapes/login-wave1.svg);
+        background-size: cover;
+        background-position: top right;
+        -webkit-animation-duration: 6s;
+        animation-duration: 6s;
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: pulse;
+        animation-name: pulse;
+    }
+
+    .login-section .content {
+        padding: 45px;
+    }
+
+    .form-group .zmdi {
+        position: absolute;
+        z-index: 1;
+        color: #fff;
+        background-color: #4e63d7;
+        border-radius: 5px;
+        height: 100%;
+        width: 45px;
+        text-align: center;
+        font-size: 20px;
+        padding-top: 13px;
+    }
+
+    .form-group input[type='text'],
+    .form-group input[type='email'],
+    .form-group input[type='password'] {
+        padding-left: 60px;
+    }
+
+    .form-control {
+        border: 1px solid #e1e1e1;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-radius: 5px;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        background-color: #fff;
+        color: #858585;
+        font-weight: 400;
+        position: relative;
+    }
+
+
+
+
+
+
+    .login-box .socials a {
+        -webkit-box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .socials a {
+        width: 35px;
+        height: 35px;
+        background-color: #6893e1;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 3px 2px 0 #516cd9;
+        box-shadow: 0 3px 2px 0 #516cd9;
+        text-align: center;
+        color: #fff;
+        padding-top: 10px;
+        font-size: 16px;
+        margin-right: 10px;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+</style>
+
+<div class="container mt-6">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+        integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+    <div class="container">
+
+        <div class="contaiber d-flex justify-content-center mt-3">
+            <img src="https://www.banped.go.th/uploaded/banner/14/4dabbed400110084229b5cb8b548840f.png" alt="">
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-11 mt-60 mx-md-auto">
+                <div class="login-box bg-white pl-lg-5 pl-0">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-6">
+                            <div class="form-wrap bg-white">
+                                <h4 class="btm-sep pb-3 mb-5 text-center"> <b>เข้าสู่ระบบผู้ใช้งาน</b> </h4>
+                                <form class="form" method="post" action="#">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group position-relative">
+                                                <span class="zmdi zmdi-account"></span>
+                                                <input type="email" id="email" class="form-control"
+                                                    placeholder="อีเมล">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group position-relative">
+                                                <span class="zmdi zmdi-email"></span>
+                                                <input type="password" id="password" class="form-control"
+                                                    placeholder="รหัสผ่าน">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-lg-right">
+                                            <a href="#" class="c-black">ลืมรหัสผ่าน</a>
+                                        </div>
+                                        <div class="col-12 mt-30">
+                                            <button type="submit" id="submit"
+                                                class="btn btn-lg btn-custom btn-dark btn-block">เข้าสู่ระบบ
+                                            </button>
+                                        </div>
+
+                                        <div class="col-12 mt-30">
+                                            <button type="submit" id="submit"
+                                                class="btn btn-lg btn-custom btn-primary mt-2 btn-block">สมัครผู้ใช้งาน
+                                            </button>
+                                        </div>
+
+                                        <div class="container d-flex justify-content-center mt-3">
+                                            <a href=""></a>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="content text-center">
+                                <div class=" pb-5 mb-5 mt-5">
+                                    <h5 class="c-black"> <b>เข้าสู่ระบบเจ้าหน้าที่</b> </h5>
+                                    <div class="d-flex justify-content-center">
+                                        <img src="https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_34-256.png"
+                                            width="120" alt="">
+                                    </div>
+                                    <div class="socials mt-3">
+                                        <button type="button" class="btn btn-success">เข้าสู่ระบบ (เจ้าหน้าที่)
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +242,7 @@
         </div>
     </div>
 
-    <footer class=" text-center text-lg-start mt-3">
+    <footer class=" text-center text-lg-start mt-5">
         <!-- Copyright -->
         <div class="text-center text-light p-3">
             <b>
@@ -97,7 +261,7 @@
 
 
 
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -549,4 +713,4 @@
     </div>
 </body>
 
-</html> --}}
+</html>
