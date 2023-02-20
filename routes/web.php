@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainantController;
+use App\Http\Controllers\BossController;
 use App\Models\Complaint;
 use App\Models\Problem_type;
 
@@ -96,6 +97,11 @@ Route::controller(OfficerController::class)->group(function () {
     Route::get('/operation/view/{id}','operationview');
     Route::post('/operation_update/{id}','operation_update');
 
+});
+
+Route::controller(BossController::class)->group(function(){
+    Route::get('/boss_page','BossPage');
+    Route::get('/report_boss','ReportBoss');
 });
 
 
