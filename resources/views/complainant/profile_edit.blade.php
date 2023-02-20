@@ -151,7 +151,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="website">เลขบัตรประจำตัวประชาชน: </label>
-                                        <input type="url" class="form-control" name="national_id" id="website"
+                                        <input type="text" class="form-control" name="national_id" id="website"
                                             value="{{ $item->national_id }}">
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="Street">ที่อยู่ :</label>
-                                        <input type="name" class="form-control" id="Street"
+                                        <input type="name" class="form-control" name="address" id="Street"
                                             value="{{ $item->address }}">
                                     </div>
                                 </div>

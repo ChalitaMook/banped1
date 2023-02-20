@@ -387,7 +387,7 @@
                         <div class="icon">
                             <i class="fa fa-check" aria-hidden="true"></i>
                         </div>
-                        <a href="#" class="card-box-footer">ดูรายการร้องเรียน<i
+                        <a href="{{ url('/complaint_table') }}" class="card-box-footer">ดูรายการร้องเรียน<i
                                 class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -504,18 +504,21 @@
                                                                         </td>
                                                                         <td>
                                                                             <div class="widget-26-job-title">
-                                                                                <a href="#">{{ $item2->topic }}</a>
-                                                                                <p class="m-0">{{ $item2->detail }} </p>
+                                                                                <a
+                                                                                    href="#">{{ $item2->topic }}</a>
+                                                                                <p class="m-0">{{ $item2->detail }}
+                                                                                </p>
                                                                             </div>
                                                                         </td>
                                                                         <td>
                                                                             <div class="widget-26-job-info">
-                                                                                <p class="type m-0">{{ $item2->complainant->name }}</p>
+                                                                                <p class="type m-0">
+                                                                                    {{ $item2->complainant->name }}</p>
                                                                             </div>
                                                                         </td>
                                                                         <td>
                                                                             <div class="widget-26-job-salary">
-                                                                                {{ $item2->created_at}}
+                                                                                {{ $item2->created_at }}
                                                                             </div>
                                                                         </td>
                                                                         <td>
@@ -526,7 +529,11 @@
                                                                         </td>
                                                                         <td>
                                                                             <div class="widget-26-job-starred">
-                                                                                <i class="fa-solid fa-camera"></i>
+                                                                                <div class="bg-light d-inline-flex justify-content-center align-items-center align-top"
+                                                                                    style="width: 35px; height: 35px; border-radius: 3px;">
+                                                                                    <i class="fa fa-fw fa-photo"
+                                                                                        style="opacity: 0.8;"></i>
+                                                                                </div>
                                                                             </div>
                                                                         </td>
                                                                     </tr>

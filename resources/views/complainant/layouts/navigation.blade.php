@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('complainant.dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('หน้าหลัก') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -34,9 +34,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('complainant.logout') }}">
@@ -45,7 +42,7 @@
                             <x-dropdown-link :href="route('complainant.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('ออกจากระบบ') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
