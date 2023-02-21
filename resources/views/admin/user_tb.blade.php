@@ -186,18 +186,72 @@
 
 
 <x-app-layout>
+    <div class="container">
+        <link rel="stylesheet" type="text/css"
+            href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <hr>
+        <div class="container bootstrap snippets bootdey">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+            <h1>ข้อมูลพนักงาน</h1>
+            <a class="btn btn-primary" href="{{url('/user_form')}}">เพิ่มข้อมูล</a><br>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-box no-header clearfix">
+                        <div class="main-box-body clearfix">
+                            <div class="table-responsive">
+                                <table class="table user-list">
+                                    <thead>
+                                            <tr class="table-primary">
+                                                <tr class="table-primary">
+                                                    <th><span>ไอดี</span></th>
+                                                    <th><span>ชื่อ</span></th>
+                                                    <th><span>อีเมล</span></th>
+                                                    <th><span>เบอร์โทร</span></th>
+                                                    <th><span>ตำแหน่ง</span></th>
+                                                    <th><span>แผนก</span></th>
+                                                    <th><span>ลบ</span></th>
+                                                    <th><span>แก้ไข</span></th>
+                                                    <th>&nbsp;</th>
+                                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($items as $item )
+                                        <tr>
+                                            <td>{{$item->id}}</td>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->phone_num}}</td>
+                                            @if ($item->role == '0')
+                                                <td>แอดมิน</td>
+                                            @elseif($item->role=='1')
+                                                <td>พนักงาน</td>
+                                            @else
+                                                <td>หัวหน้า</td>
+                                            @endif
+                                                </td>
+                                            <td>{{$item->agency->name}}</td>
+                                            <td >
+                                                <a href="{{url('user_delete/'.$item->id)}}" class="table-link text-info">
+                                                    ลบ
+                                                </a>
 
-    <div class="container rounded mt-5 ">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex">
-                            <div class="p-2">
-                                <h4> <b>ข้อมูลพนักงาน</b> </h4>
+                                            </td>
+                                            <td>
+                                                 <a href="{{url('user_form_edit/'.$item->id)}}" class="table-link danger">
+                                                    แก้ไข
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                            <tr>
+                                            <td>ไม่มีข้อมูล</td>
+                                            </tr>
+
+                                        @endforelse
+
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="p-2">
                                 <a class="btn btn-outline-primary rounded-pill" href="{{ url('/user_form') }}"
@@ -267,60 +321,3 @@
     </div>
 
 
-
-
-
-
-    {{-- <h1>ข้อมูลพนักงาน</h1>
-    <a href="{{ url('/user_form') }}">เพิ่มข้อมูล</a><br>
-    <a href="{{ url('/redirects') }}">กลับ</a>
-    <table class="table user-list">
-        <thead>
-            <tr class="table-primary">
-                <th><span>ไอดี</span></th>
-                <th><span>ชื่อ</span></th>
-                <th><span>อีเมล</span></th>
-                <th><span>เบอร์โทร</span></th>
-                <th><span>ตำแหน่ง</span></th>
-                <th><span>แผนก</span></th>
-                <th><span>ลบ</span></th>
-                <th><span>แก้ไข</span></th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($items as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->email }}</td>
-                    <td>{{ $item->phone_num }}</td>
-                    @if ($item->role == '0')
-                        <td>แอดมิน</td>
-                    @elseif($item->role == '1')
-                        <td>พนักงาน</td>
-                    @else
-                        <td>หัวหน้า</td>
-                    @endif
-                    </td>
-                    <td>{{ $item->agency->name }}</td>
-                    <td>
-                        <a href="{{ url('user_delete/' . $item->id) }}" class="table-link text-info">
-                            ลบ
-                        </a>
-
-                    </td>
-                    <td>
-                        <a href="{{ url('user_form_edit/' . $item->id) }}" class="table-link danger">
-                            แก้ไข
-                        </a>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td>ไม่มีข้อมูล</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table> --}}
-</x-app-layout>
