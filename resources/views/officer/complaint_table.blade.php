@@ -1,3 +1,15 @@
+@extends('layouts.bootstrap')
+
+<x-app-layout>
+
+</x-app-layout>
+
+
+
+
+
+
+
 ตารางรายการร้องเรียน
 <br>
 <a href="{{url('/redirects')}}">กลับ</a>

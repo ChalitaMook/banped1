@@ -17,6 +17,11 @@ class ComplainantController extends Controller
     public function profile(){
         return view('complainant.profile');
     }
+
+    public function About(){
+        return view('complainant.about');
+    }
+
     public function profile_edit($id){
         $item = Complainant::find($id);
         return view('complainant.profile_edit',compact('item'));

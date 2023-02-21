@@ -20,18 +20,6 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <div class="container mt-3">
             <div class="row flex-lg-nowrap">
-                <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-                    <div class="card p-3">
-                        <div class="e-navlist e-navlist--active-bg">
-                            <div class="user-avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
-                            </div>
-
-                            <h5 class="user-name text-center">{{ Auth::guard('complainant')->user()->name }}</h5>
-                            <h6 class="user-email text-center ">{{ Auth::guard('complainant')->user()->email }}</h6>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col">
                     <div class="e-tabs mb-3 px-3">

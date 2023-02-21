@@ -413,7 +413,8 @@
                         <div class="icon">
                             <i class="fa fa-users"></i>
                         </div>
-                        <a href="#" class="card-box-footer">ติดต่อ <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="{{ url('/about') }}" class="card-box-footer">ติดต่อเรา <i
+                            class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

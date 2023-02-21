@@ -73,6 +73,7 @@ Route::controller(AdminController::class)->group(function () {
 });
 
 Route::controller(ComplainantController::class)->group(function () {
+    Route::get('about','About');
     Route::get('/profile1', 'profile');
     Route::get('/profile_edit/{id}', 'profile_edit');
     Route::post('/profile_update/{id}','profile_update');
@@ -86,6 +87,7 @@ Route::controller(ComplainantController::class)->group(function () {
     Route::get('/rate_table','rate_table');
     Route::get('/rate_form/{id}','rate_form');
     Route::post('/rate_form_save','rate_form_save');
+
 
 
 });

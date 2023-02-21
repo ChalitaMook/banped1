@@ -603,90 +603,12 @@
     }
 </style>
 
+<x-complainant-guest-layout>
 
-
-<div class="container mt-6">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
-        integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
-
-    <div class="container">
-
-        <div class="contaiber d-flex justify-content-center mt-3">
-            <img src="https://www.banped.go.th/uploaded/banner/14/4dabbed400110084229b5cb8b548840f.png" alt="">
-        </div>
-
-
-        <div class="container">
-            <form action="#">
-                <div class="row justify-content-md-center">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="login-screen">
-                            <div class="login-box">
-                                <div>
-                                    <h5> <b>สมัครสมาชิก</b></h5>
-                                </div>
-
-                                <div class="d-flex justify-content-center mt-4">
-                                    <img src="https://cdn3.iconfinder.com/data/icons/message-and-communication-sets/50/Icon_People_Message-256.png"
-                                        width="120" alt="">
-                                </div>
-
-                                <div class="row gutters mt-3">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="ชื่อ นามสกุล">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="อีเมล">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="รหัสผ่าน">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="รหัสผ่านอีกครั้ง">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="actions clearfix">
-                                    <button type="submit" class="btn btn-success btn-block">สมัครสมาชิก</button>
-                                </div>
-
-                                <a class="underline d-flex justify-content-center text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    href="{{ route('complainant.login') }}">
-                                    {{ __('มีบัญชีเรียบร้อย?') }}
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+    <div class="d-flex justify-content-center">
+        <p>สมัครสมาชิก</p>
     </div>
 
-    <footer class=" text-center text-lg-start mt-1">
-        <!-- Copyright -->
-        <div class="text-center text-light p-3">
-            <b>
-                เทศบาลตำบลบ้านเป็ด
-                555 ม.2 ถ.เลี่ยงเมือง ต.บ้านเป็ด อ.เมือง จ.ขอนแก่น 40000
-                โทร. 0-4342-3869-70 แฟกซ์. 0-4342-3032
-            </b>
-
-        </div>
-        <!-- Copyright -->
-    </footer>
-
-</div>
-
-<x-complainant-guest-layout>
     <form method="POST" action="{{ route('complainant.register') }}">
         @csrf
         <!-- Name -->
