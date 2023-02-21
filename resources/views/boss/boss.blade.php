@@ -112,7 +112,7 @@
     }
 </style>
 
-<x-complainant-layout>
+<x-app-layout>
 
     <div class="container card mt-3">
         <div class="d-flex justify-content-center mt-4 mb-4 ">
@@ -268,4 +268,4 @@
     </div>
 
 
-</x-complainant-layout>
+</x-app-layout>
