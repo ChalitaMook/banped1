@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status')->default(0);
             $table->string('pb_id');
             $table->string('cn_id');
+            $table->string('ag_id');
             $table->timestamps();
         });
     }
