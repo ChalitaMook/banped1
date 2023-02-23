@@ -1,28 +1,4 @@
-{{-- <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                    hello officer
-                    {{ Auth::user()->name }}
-                    <br>
-                    <a href="{{url('/officer/complaint_table')}}">ตารางร้องเรียน</a><br>
-                    <a href="">รายงาน</a><br>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}
 
 <x-app-layout>
     @extends('layouts.bootstrap')
@@ -296,7 +272,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Welcome {{Auth::user()->name}}
+            ยินดีต้อนรับ {{Auth::user()->name}} หน่วยงานที่สังกัด: {{Auth::user()->agency->name}}
         </h2>
     </x-slot>
 
@@ -316,15 +292,26 @@
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
-                <!-- Billing card 2-->
-                <div class="card h-100 border-start-lg border-start-secondary">
+                <!-- Billing card 1-->
+                <div class="card h-100 border-start-lg border-start-primary">
                     <div class="card-body">
-                        <a class="nav-link ms-0 h3" href="#"
-                        target="__blank">ดูรายงาน</a>
+                        <div class="small text-muted">ผลประเมินทั้งหมด</div>
+                        <div class="h3">การประเมิน:การทำงาน</div>
+                        <a class="btn btn-outline-dark" href="{{url('/rate_table1')}}" role="button">ดูรายงาน</a>
                     </div>
                 </div>
             </div>
-          
+            <div class="col-lg-4 mb-4">
+                <!-- Billing card 2-->
+                <div class="card h-100 border-start-lg border-start-secondary">
+                    <div class="card-body">
+                        <div class="small text-muted">สรุปข้อร้องเรียน</div>
+                        <div class="h3">ดูข้อร้องเรียน</div>
+                        <a class="btn btn-outline-dark" href="{{url('/report_boss')}}" role="button">ดูรายงาน</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

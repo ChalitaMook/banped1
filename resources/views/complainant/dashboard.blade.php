@@ -413,7 +413,7 @@
                         <div class="icon">
                             <i class="fa fa-users"></i>
                         </div>
-                        <a href="#" class="card-box-footer">ติดต่อ <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="https://www.banped.go.th/" class="card-box-footer">ติดต่อ <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -424,49 +424,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 card-margin">
-                            <div class="card search-form">
-                                <div class="card-body p-0">
-                                    <form id="search-form">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row no-gutters">
-                                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                        <select class="form-control" id="exampleFormControlSelect1">
-                                                            @foreach ($item1 as $item1)
-                                                                <option value="{{ $item1->id }}">{{ $item1->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
-                                                        <input type="text" placeholder="Search..."
-                                                            class="form-control" id="search" name="search">
-                                                    </div>
-                                                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                                                        <button type="submit" class="btn btn-base">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="feather feather-search">
-                                                                <circle cx="11" cy="11" r="8">
-                                                                </circle>
-                                                                <line x1="21" y1="21" x2="16.65"
-                                                                    y2="16.65"></line>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
-
-
                     <div class="row">
                         <div class="col-12">
                             <div class="card card-margin">
@@ -477,8 +436,7 @@
                                                 <div class="result-header">
                                                     <div class="row">
                                                         <div class="col-lg-6">
-                                                            <div class="records">ข้อมูลร้องเรียน:
-
+                                                            <div class="records">ข้อมูลร้องเรียนทั้งหมด:
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
@@ -487,25 +445,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
                                                 <div class="result-body">
                                                     <div class="table-responsive">
                                                         <table class="table widget-26 card">
                                                             <tbody>
-                                                                @foreach ($item2 as $item2)
+                                                                @foreach ($items2 as $item2)
                                                                     <tr>
                                                                         <td>
-                                                                            <div class="widget-26-job-emp-img">
-                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                                                                                    alt="Company" />
-                                                                            </div>
                                                                         </td>
                                                                         <td>
                                                                             <div class="widget-26-job-title">
-                                                                                <a
-                                                                                    href="#">{{ $item2->topic }}</a>
+                                                                                <h5>
+                                                                                    {{ $item2->topic }}
+                                                                                </h5>
                                                                                 <p class="m-0">{{ $item2->detail }}
                                                                                 </p>
                                                                             </div>
@@ -527,48 +479,57 @@
                                                                                 <span>{{ $item2->status }}</span>
                                                                             </div>
                                                                         </td>
-                                                                        <td>
-                                                                            <div class="widget-26-job-starred">
+                                                                        @if ($item2->pic1 == null)
+                                                                            <td>--</td>
+                                                                        @else
+                                                                            <td>
+                                                                                <div class="bg-light d-inline-flex justify-content-center align-items-center align-top"
+                                                                                style="width: 35px; height: 35px; border-radius: 3px;">
+                                                                                <a class="fa fa-fw fa-photo"
+                                                                                style="opacity: 0.8;" href="{{ asset($item2->pic1) }}"></a>
+                                                                            </div>
+                                                                         </td>
+                                                                        @endif
+                                                                        @if ($item2->pic2 == null)
+                                                                            <td>--</td>
+                                                                        @else
+                                                                            <td>
                                                                                 <div class="bg-light d-inline-flex justify-content-center align-items-center align-top"
                                                                                     style="width: 35px; height: 35px; border-radius: 3px;">
-                                                                                    <i class="fa fa-fw fa-photo"
-                                                                                        style="opacity: 0.8;"></i>
+                                                                                    <a class="fa fa-fw fa-photo"
+                                                                                    style="opacity: 0.8;" href="{{ asset($item2->pic2) }}"></a>
                                                                                 </div>
+                                                                            </td>
+                                                                        @endif
+                                                                        @if ($item2->pic3 == null)
+                                                                            <td>--</td>
+                                                                        @else
+                                                                            <td>
+                                                                                <div class="bg-light d-inline-flex justify-content-center align-items-center align-top"
+                                                                                    style="width: 35px; height: 35px; border-radius: 3px;">
+                                                                                    <a class="fa fa-fw fa-photo"
+                                                                                    style="opacity: 0.8;" href="{{ asset($item2->pic3) }}"></a>
+                                                                                </div>
+                                                                            </td>
+                                                                        @endif
+                                                                        <td>
+                                                                            <div
+                                                                                class="widget-26-job-category bg-soft-danger">
+                                                                                <span>{{ $item2->problem_type->name }}</span>
                                                                             </div>
                                                                         </td>
+
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
+                                                        {{ $items2->links() }}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <nav class="d-flex justify-content-center">
-                                        <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link no-border" href="#">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link no-border"
-                                                    href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link no-border" href="#">2</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link no-border" href="#">3</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link no-border" href="#">4</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link no-border" href="#">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+
                                 </div>
                             </div>
                         </div>

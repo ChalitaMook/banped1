@@ -107,6 +107,7 @@
                                                     <th>รูปภาพ3</th>
                                                     <th>ผู้ร้องเรียน</th>
                                                     <th>ประเภทร้องเรียน</th>
+                                                    <th>วันที่แจ้ง</th>
                                                     <th>เปลี่ยนสถานะ</th>
                                                         </tr>
                                                     </tr>
@@ -139,6 +140,7 @@
                                             @endif
                                             <td>{{$item1->complainant->name}}</td>
                                             <td>{{$item1->problem_type->name}}</td>
+                                            <td>{{$item1->created_at}}</td>
                                             <td> <a href="{{url('change_status/'.$item1->id)}}" class="table-link text-info">
                                                 เปลี่ยนสถานะ
                                              </a></td>
@@ -175,6 +177,7 @@
                                                         <th>รูปภาพ3</th>
                                                         <th>ผู้ร้องเรียน</th>
                                                         <th>ประเภทร้องเรียน</th>
+                                                        <th>วันที่แจ้ง</th>
                                                         <th>เพิ่มรายละเอียด</th> {{-- เพิ่มรายละเอียด+พร้อมเปลี่ยนสถานะ --}}
                                                 </tr>
 
@@ -207,6 +210,7 @@
                                                                 @endif
                                                                 <td>{{$item2->complainant->name}}</td>
                                                                 <td>{{$item2->problem_type->name}}</td>
+                                                                <td>{{$item2->created_at}}</td>
                                                                 <td> <a href="{{url('operation/'.$item2->id)}}" class="table-link text-info">
                                                                     เพิ่มรายละเอียด
                                                                  </a></td>
@@ -244,6 +248,7 @@
                                                         <th>รูปภาพ3</th>
                                                         <th>ผู้ร้องเรียน</th>
                                                         <th>ประเภทร้องเรียน</th>
+                                                        <th>วันที่แจ้ง</th>
                                                         <th>ดูรายละเอียด</th> {{-- เพิ่มรายละเอียด+พร้อมเปลี่ยนสถานะ --}}
                                                         </tr>
                                                         <tbody>
@@ -274,6 +279,7 @@
                                                                 @endif
                                                                 <td>{{$item3->complainant->name}}</td>
                                                                 <td>{{$item3->problem_type->name}}</td>
+                                                                <td>{{$item3->created_at}}</td>
                                                                 <td> <a href="{{url('operation/view/'.$item3->id)}}" class="table-link text-info">
                                                                     ดูรายละเอียด
                                                                  </a></td>

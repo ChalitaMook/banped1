@@ -103,6 +103,10 @@
         border-left-color: #00ac69 !important;
     }
 
+    .border-start-warning {
+        border-left-color: #fbe462 !important;
+    }
+
     .border-start-lg {
         border-left-width: 0.25rem !important;
     }
@@ -125,33 +129,43 @@
 
         <div class="container-xl px-4 mt-4">
             <!-- Account page navigation-->
-            <h3>ดูรายงานตามประเภท</h3>
             <hr class="mt-0 mb-4">
             <div class="row">
-                @forelse ($items as $item )
 
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-4 mb-12">
                             <div class="card h-100 border-start-lg border-start-primary">
                                 <div class="card-body">
-                                    <div class="small text-muted">ประเภทข้อร้องเรียน</div>
-                                    <div class="h3">{{$item->name}}</div>
-                                    <a class="btn btn-outline-dark" href="{{url('pb_report/'.$item->id)}}" role="button">ดูรายงาน</a>
+                                    <div class="h4">รายการที่รับเรื่องแล้ว</div>
+                                    <div class="h3">{{$itemscount1}}</div>
+                                    <div class="h3">เรื่อง</div>
                                 </div>
                             </div>
-                        </div>
-                @empty
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100 border-start-lg border-start-primary">
-                        <div class="card-body">
-                            <div class="h3">ไม่มีรายการ</div>
+                    </div>
+                    <div class="col-lg-4 mb-12">
+                        <div class="card h-100 border-start-lg border-start-warning">
+                            <div class="card-body">
+                                <div class="h4">รายการที่กำลังดำเนินการ</div>
+                                <div class="h3">{{$itemscount2}}</div>
+                                <div class="h3">เรื่อง</div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 mb-12">
+                        <div class="card h-100 border-start-lg border-start-success">
+                            <div class="card-body">
+                                <div class="h4">รายการที่ดำเนินการเสร็จสิ้น</div>
+                                <div class="h3">{{$itemscount3}}</div>
+                                <div class="h3">เรื่อง</div>
+                            </div>
+                        </div>
                 </div>
-                @endforelse
+
+
 
 
 
             </div>
+        <br>
 
 
         </div>

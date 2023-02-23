@@ -61,8 +61,7 @@
                         <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i
                                     class="bi bi-arrow-left-square me-2"></i></a> <b>ฟอร์มร้องเรียนข้อมูล</b> </h2>
                         <div class="hstack gap-3">
-                            <button class="btn btn-light btn-sm btn-icon-text rounded-pill"><i class="bi bi-x"></i>
-                                <span class="text">ยกเลิก</span></button>
+                            <input class="btn btn-danger btn-sm btn-icon-text rounded-pill" type="reset" value="ยกเลิก">
                             <button class="btn btn-primary btn-sm btn-icon-text rounded-pill"><i class="bi bi-save"></i>
                                 <span class="text">ร้องเรียน</span></button>
                         </div>
@@ -86,14 +85,16 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
 
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
+                                             <div class="mb-3">
                                                 <label class="form-label"> <b>หัวข้อ</b> </label>
                                                 <input class="form-control pr-5 rounded-pill" type="text"
                                                     name="topic" id="topic" value="{{ old('topic') }}">
                                             </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+
                                         </div>
 
                                         <div class="col-lg-6">
