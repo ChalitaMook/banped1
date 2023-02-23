@@ -154,6 +154,7 @@ class ComplainantController extends Controller
 
     public function rate_form_save(Request $req){
 
+
         $item = new Rate;
         $item->section1 = intval($req->section1);
         $item->section2 = intval($req->section2);
@@ -165,7 +166,7 @@ class ComplainantController extends Controller
         $item->cp_id = $req->cp_id;
         $item->save();
 
-        return redirect('/rate_table');
+        return redirect('/complainant/dashboard');
 
     }
 }

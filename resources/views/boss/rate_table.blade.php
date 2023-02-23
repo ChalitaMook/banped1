@@ -1,4 +1,3 @@
-
 @extends('layouts.bootstrap')
 
 <style>
@@ -94,10 +93,18 @@
         <hr>
         <div class="container bootstrap snippets bootdey">
 
-            <h1>ข้อมูลประเภทข้อร้องเรียน</h1>
-            <a class="btn btn-primary" href="{{url('/problem_type_form')}}">เพิ่มข้อมูล</a><br>
 
+            <h1>รายการประเมิน</h1>
             <hr>
+
+            <div style="background-color: #fffbfb">
+                <h4>คะแนนเฉลี่ยแต่ละด้าน</h4>
+                <h5>คะแนนด้านที่1:{{$sec1}} คะแนน</h5>
+                <h5>คะแนนด้านที่2:{{$sec2}} คะแนน</h5>
+                <h5>คะแนนด้านที่3:{{$sec3}} คะแนน</h5>
+                <h5>คะแนนด้านที่4:{{$sec4}} คะแนน</h5>
+                <h5>คะแนนด้านที่5:{{$sec5}} คะแนน</h5>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-box no-header clearfix">
@@ -106,30 +113,30 @@
                                 <table class="table user-list">
                                     <thead>
                                             <tr class="table-primary">
-                                                    <th>ไอดี</th>
-                                                    <th>ชื่อประเภท</th>
-                                                    <th>หน่วยงานที่ดูแล</th>
-                                                    <th>ลบ</th>
-                                                    <th>แก้ไข</th>
+                                                <tr class="table-primary">
+                                                        <th>หัวข้อ</th>
+                                                        <th>ประเภทข้อร้องเรียน</th>
+                                                        <th>คะแนนด้านที่1</th>
+                                                        <th>คะแนนด้านที่2</th>
+                                                        <th>คะแนนด้านที่3</th>
+                                                        <th>คะแนนด้านที่4</th>
+                                                        <th>คะแนนด้านที่5</th>
+                                                        <th>ความคิดเห็นเพิ่มเติม</th>
+                                                        </tr>
                                                     </tr>
                                     </thead>
                                     <tbody>
+
                                         @forelse ($items as $item )
                                         <tr>
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->name}}</td>
-                                            <td>{{$item->agency->name}}</td>
-                                            <td>
-                                                <a href="{{url('problem_type_delete/'.$item->id)}}" class="table-link text-info">
-                                                   ลบ
-                                                </a>
-
-                                            </td>
-                                            <td>
-                                                 <a href="{{url('problem_type_form_edit/'.$item->id)}}" class="table-link danger">
-                                                   แก้ไข
-                                                </a>
-                                            </td>
+                                            <td>{{$item->complaint->topic}}</td>
+                                            <td>{{$item->complaint->problem_type->name}}</td>
+                                            <td>{{$item->section1}}</td>
+                                            <td>{{$item->section2}}</td>
+                                            <td>{{$item->section3}}</td>
+                                            <td>{{$item->section4}}</td>
+                                            <td>{{$item->section5}}</td>
+                                            <td>{{$item->comment}}</td>
                                         </tr>
                                         @empty
                                             <tr>
@@ -137,7 +144,6 @@
                                             </tr>
 
                                         @endforelse
-
 
                                     </tbody>
                                 </table>
@@ -151,43 +157,3 @@
 
 </x-app-layout>
 
-
-{{-- <h1>ข้อมูลหน่วยงาน</h1>
-<a href="{{url('/problem_type_form')}}">เพิ่มข้อมูล</a><br>
-<a href="{{url('/redirects')}}">กลับ</a>
-<table >
-    <thead>
-        <tr>
-        <th>ไอดี</th>
-        <th>ชื่อประเภท</th>
-        <th>หน่วยงานที่ดูแล</th>
-        <th>ลบ</th>
-        <th>แก้ไข</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($items as $item )
-        <tr>
-            <td>{{$item->id}}</td>
-            <td>{{$item->name}}</td>
-            <td>{{$item->agency->name}}</td>
-            <td>
-                <a href="{{url('problem_type_delete/'.$item->id)}}" class="table-link text-info">
-                   ลบ
-                </a>
-
-            </td>
-            <td>
-                 <a href="{{url('problem_type_form_edit/'.$item->id)}}" class="table-link danger">
-                   แก้ไข
-                </a>
-            </td>
-        </tr>
-        @empty
-            <tr>
-            <td>ไม่มีข้อมูล</td>
-            </tr>
-
-        @endforelse
-    </tbody>
-</table> --}}

@@ -37,8 +37,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/complainant/dashboard', function () {
     $item1 = Problem_type::get();
-    $item2 = Complaint::get();
-    return view('complainant.dashboard',compact('item1','item2'));
+    $items2 = Complaint::paginate(6);
+    return view('complainant.dashboard',compact('item1','items2'));
 })->middleware(['auth:complainant'])->name('complainant.dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -61,7 +61,6 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/agency_form_edit/{id}','agency_form_edit');
     Route::post('/agency_form_update/{id}','agency_form_update');
     Route::get('/agency_delete/{id}','agency_delete');
-
 
     Route::get('/user', 'user_tb');
     Route::get('/user_form', 'user_form');
@@ -97,11 +96,16 @@ Route::controller(OfficerController::class)->group(function () {
     Route::get('/operation/view/{id}','operationview');
     Route::post('/operation_update/{id}','operation_update');
 
+
 });
 
 Route::controller(BossController::class)->group(function(){
     Route::get('/boss_page','BossPage');
     Route::get('/report_boss','ReportBoss');
+    Route::get('/rate_table1','rate_report');
+    Route::get('/pb_report/{id}','pb_report');
+
+
 });
 
 
